@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Site logo" src="../assets/logo.png" width="200px">
+    <ChallengeBooks/>
+    <ChallengeGoal :readingGoalTitle="`Reading goal ${date}`"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import ChallengeBooks from '@/components/ChallengeBooksList.vue';
+import ChallengeGoal from '@/components/ChallengeGoal.vue';
 
 export default {
+  data() {
+    return {
+      date: null
+    };
+  },
   name: 'HomeView',
   components: {
-    HelloWorld
+    ChallengeBooks,
+    ChallengeGoal
+  },
+  methods: {
+    getCurrentYear() {
+      this.date = new Date().getFullYear();
+    }
+  },
+  mounted() {
+    this.getCurrentYear()
   }
 }
 </script>
